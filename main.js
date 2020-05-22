@@ -22,25 +22,9 @@ $(document).ready(function() {
                 success: function(data) {
                     // mi viene restituito un array come risultato e lo salvo in una variabile
                     var array_risultati = data.results;
+                    //funzione che stampa in pagina i risultati ottenuti
+                    generaCard(array_risultati);
 
-                    for (var i = 0; i < array_risultati.length; i++) {
-                        var risultato_corrente = array_risultati[i];
-
-                        //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
-                        var locandina_film = {
-                            'titolo': risultato_corrente.title,
-                            'titolo-originale': risultato_corrente.original_title,
-                            'lingua': risultato_corrente.original_language,
-                            'voto': risultato_corrente.vote_average,
-
-                        }
-                        console.log(locandina_film);
-
-                        var html_finale = template_function(locandina_film);
-
-                        // appendo in pagina una card con i dati dei film
-                        $('.film-container').append(html_finale);
-                    }
 
                 },
                 error: function() {
@@ -64,4 +48,26 @@ $(document).ready(function() {
 
 
     });
+    //funzione che stampa in pagina i risultati ottenuti
+    function generaCard(array_risultati) {
+        for (var i = 0; i < array_risultati.length; i++) {
+            var risultato_corrente = array_risultati[i];
+
+            //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
+            var locandina_film = {
+                'titolo': risultato_corrente.title,
+                'titolo-originale': risultato_corrente.original_title,
+                'lingua': risultato_corrente.original_language,
+                'voto': risultato_corrente.vote_average,
+
+            }
+            console.log(locandina_film);
+
+            var html_finale = template_function(locandina_film);
+
+            // appendo in pagina una card con i dati dei film
+            $('.film-container').append(html_finale);
+        }
+
+    }
 });
