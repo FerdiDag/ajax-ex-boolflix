@@ -29,7 +29,6 @@
 main {
     width: 100%;
     height: calc(100vh - 70px);
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,5 +45,8 @@ header img {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 100px 0;
+}
+
+ul {
+    padding: 20px;
 }
