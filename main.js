@@ -8,6 +8,7 @@ $(document).ready(function() {
         //prendo ciò che è stato scritto dall'utente nella searchbar e lo salvo in una variabile
         var messaggio = $('#input-text').val();
 
+
         if (!messaggio.replace(/\s/g, '').length) {
             alert('Inserisci un titolo valido');
         } else {
@@ -23,6 +24,7 @@ $(document).ready(function() {
                 success: function(data) {
                     // mi viene restituito un array come risultato e lo salvo in una variabile
                     var array_risultati = data.results;
+                    console.log(array_risultati)
                     //funzione che stampa in pagina i risultati ottenuti
                     generaCard(array_risultati);
 
@@ -35,6 +37,9 @@ $(document).ready(function() {
             //fine chiamata ajax
         }
 
+        //rimuove i risultati ottenuti
+        $('.film-container').html('');
+        //svuota la searchbar dopo aver premuto invio/click
         $('#input-text').val('');
 
 
@@ -49,6 +54,8 @@ $(document).ready(function() {
 
 
     });
+
+
     //funzione che stampa in pagina i risultati ottenuti
     function generaCard(array_risultati) {
         for (var i = 0; i < array_risultati.length; i++) {
@@ -62,7 +69,8 @@ $(document).ready(function() {
                 'voto': risultato_corrente.vote_average,
 
             }
-            console.log(locandina_film);
+
+
 
             var html_finale = template_function(locandina_film);
 
@@ -72,10 +80,3 @@ $(document).ready(function() {
 
     }
 });
-
-
-function film_locandina() {
-
-
-
-}
