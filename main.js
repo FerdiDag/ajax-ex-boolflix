@@ -7,7 +7,10 @@ $(document).ready(function() {
     $("#input-button").click(function() {
         //prendo ciò che è stato scritto dall'utente nella searchbar e lo salvo in una variabile
         var messaggio = $('#input-text').val();
-
+        //rimuove i risultati ottenuti
+        $('.film-container').html('');
+        //svuota la searchbar dopo aver premuto invio/click
+        $('#input-text').val('');
 
         if (!messaggio.replace(/\s/g, '').length) {
             alert('Inserisci un titolo valido');
@@ -25,6 +28,9 @@ $(document).ready(function() {
                     // mi viene restituito un array come risultato e lo salvo in una variabile
                     var array_risultati = data.results;
                     console.log(array_risultati)
+                    if (array_risultati.length == 0) {
+                        alert('Nessun risultato trovato');
+                    }
                     //funzione che stampa in pagina i risultati ottenuti
                     generaCard(array_risultati);
 
@@ -37,10 +43,7 @@ $(document).ready(function() {
             //fine chiamata ajax
         }
 
-        //rimuove i risultati ottenuti
-        $('.film-container').html('');
-        //svuota la searchbar dopo aver premuto invio/click
-        $('#input-text').val('');
+
 
 
     });
