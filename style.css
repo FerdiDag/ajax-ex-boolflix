@@ -13,6 +13,7 @@
     align-items: center;
     justify-content: space-around;
     position: fixed;
+    z-index: 99999;
 }
 
 .logo-container {
@@ -78,4 +79,8 @@ header img {
 
 .overview {
     overflow-y: auto;
+}
+
+.film-card img {
+    max-height: 500px;
 }
