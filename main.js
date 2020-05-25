@@ -17,6 +17,7 @@ $(document).ready(function() {
         } else {
             //inizio chiamata ajax
             ricercaFilm(messaggio);
+            ricercaSerie(messaggio);
             //fine chiamata ajax
         }
 
@@ -69,6 +70,46 @@ $(document).ready(function() {
         });
         //fine chiamata ajax
     }
+
+    function ricercaSerie(messaggio) {
+        //inizio chiamata ajax
+        $.ajax({
+            'url': 'https://api.themoviedb.org/3/search/tv',
+            'method': 'GET',
+            'data': {
+                'api_key': 'd2f2e36584ccedbe3c1a6c903ec79afb',
+                'query': messaggio,
+                'language': 'it',
+            },
+            success: function(data) {
+                // mi viene restituito un array come risultato e lo salvo in una variabile
+                var array_risultati = data.results;
+                console.log(array_risultati)
+                if (array_risultati.length == 0) {
+                    alert('Nessun risultato trovato');
+                } else {
+                    //funzione che stampa in pagina i risultati ottenuti
+                    generaCard(array_risultati);
+                }
+
+
+
+
+            },
+            error: function() {
+                console.log('errore');
+            }
+        });
+        //fine chiamata ajax
+
+
+    }
+
+
+
+
+
+
     //funzione che stampa in pagina i risultati ottenuti
     function generaCard(array_risultati) {
         for (var i = 0; i < array_risultati.length; i++) {
@@ -83,6 +124,8 @@ $(document).ready(function() {
         //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
         var locandina_film = {
             'titolo': risultato_corrente.title,
+            'titolo-serie': risultato_corrente.name,
+            'titolo-originale-serie': risultato_corrente.original_name,
             'titolo-originale': risultato_corrente.original_title,
             'lingua': risultato_corrente.original_language,
             'voto': Math.ceil(risultato_corrente.vote_average / 2),
