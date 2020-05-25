@@ -168,13 +168,35 @@ $(document).ready(function() {
         return stellaFas + stellaFar;
     }
 
-});
 
-function seleziona_lingua(lingua) {
-    var array_lingue = ['en', 'it', 'fr', 'de']
+    function seleziona_lingua(lingua) {
+        var array_lingue = ['en', 'it', 'fr', 'de', 'es']
 
-    if (array_lingue.includes(lingua)) {
-        return 'flag_'+lingua+'.png"'
+        if (array_lingue.includes(lingua)) {
+            return 'flag_' + lingua + '.png"'
+        } else {
+            return lingua;
+        }
     }
 
-}
+
+    $('.film-container').on('mouseenter', '.film-card', function() {
+
+        $('.info-wrapper', this).show();
+        var immagineCorrente = $('img', this);
+        if (immagineCorrente.is(":visible")) {
+            immagineCorrente.hide();
+        }
+    });
+    $('.film-container').on('mouseleave', '.film-card', function() {
+
+        $('.info-wrapper', this).hide();
+        var immagineCorrente = $('img', this);
+        if (immagineCorrente.is(":hidden")) {
+            immagineCorrente.show();
+        }
+    });
+
+
+
+});
