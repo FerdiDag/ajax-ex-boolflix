@@ -62,7 +62,6 @@ header img {
     position: relative;
 }
 
-
 .vote {
     display: block;
 }
@@ -73,13 +72,9 @@ header img {
     width: 350px;
     height: 500px;
     overflow-y: auto;
-
-
 }
 
-.overview {
-
-}
+.overview {}
 
 .film-card img {
     max-height: 500px;

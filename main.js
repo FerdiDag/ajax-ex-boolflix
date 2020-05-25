@@ -118,8 +118,6 @@ $(document).ready(function() {
 
 
 
-
-
     //funzione che stampa in pagina i risultati ottenuti
     function generaCard(array_risultati) {
         for (var i = 0; i < array_risultati.length; i++) {
@@ -183,17 +181,17 @@ $(document).ready(function() {
     $('.film-container').on('mouseenter', '.film-card', function() {
 
         $('.info-wrapper', this).show();
-        var immagineCorrente = $('.poster', this);
-        if (immagineCorrente.is(":visible")) {
-            immagineCorrente.hide();
+        var posterCorrente = $('.poster', this);
+        if (posterCorrente.is(":visible")) {
+            posterCorrente.hide();
         }
     });
     $('.film-container').on('mouseleave', '.film-card', function() {
 
         $('.info-wrapper', this).hide();
-        var immagineCorrente = $('.poster', this);
-        if (immagineCorrente.is(":hidden")) {
-            immagineCorrente.show();
+        var posterCorrente = $('.poster', this);
+        if (posterCorrente.is(":hidden")) {
+            posterCorrente.show();
         }
     });
 
