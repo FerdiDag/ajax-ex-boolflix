@@ -86,7 +86,7 @@ $(document).ready(function() {
                 var array_risultati = data.results;
                 console.log(array_risultati)
                 if (array_risultati.length == 0) {
-                    alert('Nessun risultato trovato');
+                    console.log('Nessuna serie Tv corrispondente trovata');
                 } else {
                     //funzione che stampa in pagina i risultati ottenuti
                     generaCard(array_risultati);
@@ -123,12 +123,14 @@ $(document).ready(function() {
     function scrivi_locandina(risultato_corrente) {
         //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
         var locandina_film = {
+            'immagine':risultato_corrente.poster_path,
             'titolo': risultato_corrente.title,
             'titolo-serie': risultato_corrente.name,
             'titolo-originale-serie': risultato_corrente.original_name,
             'titolo-originale': risultato_corrente.original_title,
             'lingua': risultato_corrente.original_language,
             'voto': Math.ceil(risultato_corrente.vote_average / 2),
+
 
         }
 
@@ -139,4 +141,9 @@ $(document).ready(function() {
         // appendo in pagina una card con i dati dei film
         $('.film-container').append(html_finale);
     }
+
+$('.film-card .vote').on('each', function(){
+    var prova = $(this);
+    console.log(prova)
+})
 });

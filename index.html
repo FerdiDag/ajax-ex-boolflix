@@ -29,12 +29,14 @@
         <div class="film-container">
             <script id="film-template" type="text/x-handlebars-template">
 
-                <ul>
-                <li class="title">Titolo :{{titolo-serie}} {{titolo}}</li>
-                <li class="original-title">Titolo  originale:{{titolo-originale-serie}} {{titolo-originale}}</li>
-                <li>Lingua: {{lingua}}</li>
-                <li>Voto: {{voto}}</li>
-                </ul>
+                <div class="film-card">
+                <img src="https://image.tmdb.org/t/p/w185{{immagine}}" alt="">
+                <h3 class="title">Titolo: {{titolo-serie}} {{titolo}}</h3>
+                <h3 class="original-title">Titolo originale: {{titolo-originale-serie}} {{titolo-originale}}</h3>
+                <span class"lang">Lingua: {{lingua}}</span>
+                <span class="vote">Voto: {{voto}} </span>
+
+            </div>
 
 
          </script>

@@ -39,14 +39,27 @@ header img {
 }
 
 .film-container {
-    width: 1070px;
+    padding-top: 100px;
+    /* max-width: 1440px; */
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
 }
 
 ul {
     padding: 20px;
+}
+
+.film-card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    margin: 10px 20px;
+    width: 300px;
+    height: 400px;
+    /* background-color: red; */
+    text-align: center;
 }
