@@ -72,13 +72,13 @@ header img {
     background-color: grey;
     width: 350px;
     height: 500px;
-    position: absolute;
-    top:0;
+    overflow-y: auto;
+
 
 }
 
 .overview {
-    overflow-y: auto;
+
 }
 
 .film-card img {

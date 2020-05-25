@@ -183,7 +183,7 @@ $(document).ready(function() {
     $('.film-container').on('mouseenter', '.film-card', function() {
 
         $('.info-wrapper', this).show();
-        var immagineCorrente = $('img', this);
+        var immagineCorrente = $('.poster', this);
         if (immagineCorrente.is(":visible")) {
             immagineCorrente.hide();
         }
@@ -191,7 +191,7 @@ $(document).ready(function() {
     $('.film-container').on('mouseleave', '.film-card', function() {
 
         $('.info-wrapper', this).hide();
-        var immagineCorrente = $('img', this);
+        var immagineCorrente = $('.poster', this);
         if (immagineCorrente.is(":hidden")) {
             immagineCorrente.show();
         }
