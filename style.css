@@ -47,9 +47,6 @@ header img {
     flex-wrap: wrap;
 }
 
-ul {
-    padding: 20px;
-}
 
 .film-card {
     display: flex;

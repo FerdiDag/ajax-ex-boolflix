@@ -58,7 +58,7 @@ $(document).ready(function() {
             'data': {
                 'api_key': 'd2f2e36584ccedbe3c1a6c903ec79afb',
                 'query': messaggio,
-                // 'language': selectedLanguage,
+                'language': 'it',
             },
             success: function(data) {
                 // mi viene restituito un array come risultato e lo salvo in una variabile
@@ -90,7 +90,7 @@ $(document).ready(function() {
             'data': {
                 'api_key': 'd2f2e36584ccedbe3c1a6c903ec79afb',
                 'query': messaggio,
-                // 'language': selectedLanguage,
+                'language': 'it',
             },
             success: function(data) {
                 // mi viene restituito un array come risultato e lo salvo in una variabile
@@ -153,13 +153,13 @@ $(document).ready(function() {
         $('.film-container').append(html_finale);
     }
 
-    function selezioneLingua(selectedLanguage) {
-        $("#languages").change(function() {
-            var selectedLanguage = $(this).children("option:selected").val();
-
-            console.log(selectedLanguage);
-        });
-
-    };
+    // function selezioneLingua(selectedLanguage) {
+    //     $("#languages").change(function() {
+    //         var selectedLanguage = $(this).children("option:selected").val();
+    //
+    //         console.log(selectedLanguage);
+    //     });
+    //
+    // };
 
 });
