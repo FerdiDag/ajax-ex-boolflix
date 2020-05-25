@@ -171,10 +171,10 @@ $(document).ready(function() {
 });
 
 function seleziona_lingua(lingua) {
-    var array_lingue = ['en', 'it', 'fr']
-    console.log(array_lingue);
+    var array_lingue = ['en', 'it', 'fr', 'de']
+
     if (array_lingue.includes(lingua)) {
-return "<img src='flag_" + lingua + ".png'>";
+        return 'flag_'+lingua+'.png"'
     }
 
 }
