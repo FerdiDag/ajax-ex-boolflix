@@ -4,9 +4,15 @@ $(document).ready(function() {
     //preparo la funzione da utilizzare per il template
     var template_function = Handlebars.compile(template_html);
     //intercetto il click sul bottone submit
+
+
+
+
     $("#input-button").click(function() {
         //prendo ciò che è stato scritto dall'utente nella searchbar e lo salvo in una variabile
         var messaggio = $('#input-text').val();
+
+
         //rimuove i risultati ottenuti
         $('.film-container').html('');
         //svuota la searchbar dopo aver premuto invio/click
@@ -25,6 +31,11 @@ $(document).ready(function() {
 
 
     });
+
+
+
+
+
 
     //per associare  la pressione del tasto enter nella textarea al bottone
     $("#input-text").keydown(function(event) {
@@ -47,7 +58,7 @@ $(document).ready(function() {
             'data': {
                 'api_key': 'd2f2e36584ccedbe3c1a6c903ec79afb',
                 'query': messaggio,
-                'language': 'it',
+                // 'language': selectedLanguage,
             },
             success: function(data) {
                 // mi viene restituito un array come risultato e lo salvo in una variabile
@@ -79,7 +90,7 @@ $(document).ready(function() {
             'data': {
                 'api_key': 'd2f2e36584ccedbe3c1a6c903ec79afb',
                 'query': messaggio,
-                'language': 'it',
+                // 'language': selectedLanguage,
             },
             success: function(data) {
                 // mi viene restituito un array come risultato e lo salvo in una variabile
@@ -123,7 +134,7 @@ $(document).ready(function() {
     function scrivi_locandina(risultato_corrente) {
         //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
         var locandina_film = {
-            'immagine':risultato_corrente.poster_path,
+            'immagine': risultato_corrente.poster_path,
             'titolo': risultato_corrente.title,
             'titolo-serie': risultato_corrente.name,
             'titolo-originale-serie': risultato_corrente.original_name,
@@ -142,8 +153,13 @@ $(document).ready(function() {
         $('.film-container').append(html_finale);
     }
 
-$('.film-card .vote').on('each', function(){
-    var prova = $(this);
-    console.log(prova)
-})
+    function selezioneLingua(selectedLanguage) {
+        $("#languages").change(function() {
+            var selectedLanguage = $(this).children("option:selected").val();
+
+            console.log(selectedLanguage);
+        });
+
+    };
+
 });
