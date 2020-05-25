@@ -120,7 +120,6 @@ $(document).ready(function() {
 
 
 
-
     //funzione che stampa in pagina i risultati ottenuti
     function generaCard(array_risultati) {
         for (var i = 0; i < array_risultati.length; i++) {
@@ -128,19 +127,22 @@ $(document).ready(function() {
             scrivi_locandina(risultato_corrente);
 
 
+
         }
     }
     //funzione che inserisce i dati trovati in un oggetto
     function scrivi_locandina(risultato_corrente) {
         //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
+
         var locandina_film = {
             'immagine': risultato_corrente.poster_path,
             'titolo': risultato_corrente.title,
             'titolo-serie': risultato_corrente.name,
             'titolo-originale-serie': risultato_corrente.original_name,
             'titolo-originale': risultato_corrente.original_title,
-            'lingua': risultato_corrente.original_language,
-            'voto': Math.ceil(risultato_corrente.vote_average / 2),
+            'lingua': seleziona_lingua(risultato_corrente.original_language),
+            'voto': voto_stella(risultato_corrente.vote_average),
+            'trama': risultato_corrente.overview,
 
 
         }
@@ -153,13 +155,26 @@ $(document).ready(function() {
         $('.film-container').append(html_finale);
     }
 
-    // function selezioneLingua(selectedLanguage) {
-    //     $("#languages").change(function() {
-    //         var selectedLanguage = $(this).children("option:selected").val();
-    //
-    //         console.log(selectedLanguage);
-    //     });
-    //
-    // };
+    function voto_stella(voto) {
+        var voto = Math.ceil(voto / 2);
+        var stellaFas = '';
+        var stellaFar = '';
+        for (var i = 0; i < voto; i++) {
+            stellaFas += '<i class="fas fa-star"></i>';
+        }
+        for (var i = 0; i < 5 - voto; i++) {
+            stellaFar += '<i class="far fa-star"></i>'
+        }
+        return stellaFas + stellaFar;
+    }
 
 });
+
+function seleziona_lingua(lingua) {
+    var array_lingue = ['en', 'it', 'fr']
+    console.log(array_lingue);
+    if (array_lingue.includes(lingua)) {
+return "<img src='flag_" + lingua + ".png'>";
+    }
+
+}

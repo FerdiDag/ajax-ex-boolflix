@@ -6,6 +6,7 @@
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/f40957cf2f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -36,12 +37,13 @@
 
                 <div class="film-card">
                 <img src="https://image.tmdb.org/t/p/w185{{immagine}}" alt="">
+                <div class="info-wrapper">
                 <h3 class="title">Titolo: {{titolo-serie}} {{titolo}}</h3>
                 <h3 class="original-title">Titolo originale: {{titolo-originale-serie}} {{titolo-originale}}</h3>
                 <span class"lang">Lingua: {{lingua}}</span>
-                <span class="vote">Voto: {{voto}} </span>
-            
-            </div>
+                <span class="vote">Voto: {{{voto}}} </span>
+                 </div>
+                </div>
 
 
          </script>

@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: fixed;
 }
 
 .logo-container {
@@ -47,7 +48,6 @@ header img {
     flex-wrap: wrap;
 }
 
-
 .film-card {
     display: flex;
     justify-content: flex-start;
@@ -59,4 +59,14 @@ header img {
     height: 400px;
     /* background-color: red; */
     text-align: center;
+
+
+}
+.vote {
+    display: block;
+}
+
+.info-wrapper {
+    display: block;
+
 }
