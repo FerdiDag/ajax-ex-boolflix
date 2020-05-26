@@ -133,7 +133,7 @@ $(document).ready(function() {
         //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
 
         var locandina_film = {
-            'immagine': risultato_corrente.poster_path,
+            'immagine': seleziona_poster(risultato_corrente.poster_path),
             'titolo': risultato_corrente.title,
             'titolo-serie': risultato_corrente.name,
             'titolo-originale-serie': risultato_corrente.original_name,
@@ -153,8 +153,8 @@ $(document).ready(function() {
         $('.film-container').append(html_finale);
     }
 
-    function voto_stella(voto) {
-        var voto = Math.ceil(voto / 2);
+    function voto_stella(voti) {
+        var voto = Math.ceil(voti / 2);
         var stellaFas = '';
         var stellaFar = '';
         for (var i = 0; i < voto; i++) {
@@ -171,9 +171,19 @@ $(document).ready(function() {
         var array_lingue = ['en', 'it', 'fr', 'de', 'es']
 
         if (array_lingue.includes(lingua)) {
-            return 'flag_' + lingua + '.png"'
+            return '<img src="flag_' + lingua + '.png"">';
         } else {
             return lingua;
+        }
+    }
+
+    function seleziona_poster(poster) {
+
+
+        if (poster === null) {
+            return 'prodotto-non-disponibile.jpg';
+        } else {
+            return 'https://image.tmdb.org/t/p/w342' + poster;
         }
     }
 
@@ -194,6 +204,7 @@ $(document).ready(function() {
             posterCorrente.show();
         }
     });
+
 
 
 
