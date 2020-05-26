@@ -180,32 +180,37 @@ $(document).ready(function() {
     function seleziona_poster(poster) {
 
 
-        if (poster === null) {
-            return 'prodotto-non-disponibile.jpg';
+        if (!poster) {
+            return 'immagine-non-disponibile.png';
         } else {
             return 'https://image.tmdb.org/t/p/w342' + poster;
         }
     }
 
 
-    $('.film-container').on('mouseenter', '.film-card', function() {
+    // $('.film-container').on('mouseenter', '.film-card', function() {
+    //
+    //        $('.info-wrapper', this).show();
+    //        var posterCorrente = $('.poster', this);
+    //        if (posterCorrente.is(":visible")) {
+    //            posterCorrente.hide();
+    //        }
+    //    });
+    //    $('.film-container').on('mouseleave', '.film-card', function() {
+    //
+    //        $('.info-wrapper', this).hide();
+    //        var posterCorrente = $('.poster', this);
+    //        if (posterCorrente.is(":hidden")) {
+    //            posterCorrente.show();
+    //        }
+    //    });
 
-        $('.info-wrapper', this).show();
-        var posterCorrente = $('.poster', this);
-        if (posterCorrente.is(":visible")) {
-            posterCorrente.hide();
-        }
-    });
-    $('.film-container').on('mouseleave', '.film-card', function() {
+        $('.film-container').on('mouseenter', '.film-card', function() {
+           $(".flip").flip({
+               trigger: 'hover'
 
-        $('.info-wrapper', this).hide();
-        var posterCorrente = $('.poster', this);
-        if (posterCorrente.is(":hidden")) {
-            posterCorrente.show();
-        }
-    });
+           });
 
-
-
+       });
 
 });
