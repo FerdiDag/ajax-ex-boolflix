@@ -135,7 +135,16 @@ $(document).ready(function() {
         var html_finale = template_function(locandina_film);
         // appendo in pagina una card con i dati dei film
         $('.film-container').append(html_finale);
-        ricerca_attori(risultato_corrente.id);
+
+        var url;
+        if (tipo == 'Film') {
+            url = 'https://api.themoviedb.org/3/movie/' + risultato_corrente.id + '/credits';
+        } else if (tipo == 'Serie-tv') {
+            url = 'https://api.themoviedb.org/3/tv/' + risultato_corrente.id + '/credits';
+        }
+
+        stampa_attori(risultato_corrente.id, url);
+
 
     }
 
@@ -173,11 +182,11 @@ $(document).ready(function() {
     }
 
 
-    function ricerca_attori(id) {
+    function stampa_attori(id, url) {
 
         //inizio chiamata ajax
         $.ajax({
-            'url': api_url_base + 'movie/' + id + '/credits',
+            'url': url,
             'method': 'GET',
             'data': {
                 'api_key': api_key,
@@ -190,8 +199,8 @@ $(document).ready(function() {
                     var cast_corrente = array_cast[i];
                     // console.log(cast_corrente)
                     // $('.cast[data-id="' + id + '"]').append(cast_corrente.name);
-                    var nome_cast = cast_corrente.name;
-                    array_nomi.push(nome_cast);
+
+                    array_nomi.push(cast_corrente.name);
 
                     // '.cast[data-id="1"]'
                     //
@@ -201,8 +210,8 @@ $(document).ready(function() {
                     // '.cast[data-id="' + id + '"]'
                     console.log(array_nomi);
                 }
-                var nomi = array_nomi.join(', ');
-                $('.cast[data-id="' + id + '"]').append(nomi);
+
+                $('.cast[data-id="' + id + '"]').append(array_nomi.join(', '));
 
             },
 
@@ -213,7 +222,6 @@ $(document).ready(function() {
         });
         //fine chiamata ajax
     }
-
 
 
 
