@@ -4,7 +4,7 @@ $(document).ready(function() {
     //preparo la funzione da utilizzare per il template
     var template_function = Handlebars.compile(template_html);
 
-    //preparo delle variabili per l'interfaccia
+    //preparo delle variabili per ajax
     var api_key = 'd2f2e36584ccedbe3c1a6c903ec79afb';
     var api_url_base = 'https://api.themoviedb.org/3/';
     var api_img_url_base = 'https://image.tmdb.org/t/p/';
@@ -64,7 +64,7 @@ $(document).ready(function() {
                     alert('Nessun risultato trovato');
                 } else {
                     //funzione che stampa in pagina i risultati ottenuti
-                    generaCard(array_risultati);
+                    generaCard(array_risultati, 'Film');
                 }
 
             },
@@ -95,7 +95,7 @@ $(document).ready(function() {
                     console.log('Nessuna serie Tv corrispondente trovata');
                 } else {
                     //funzione che stampa in pagina i risultati ottenuti
-                    generaCard(array_risultati);
+                    generaCard(array_risultati, 'Serie-tv');
                 }
             },
             error: function() {
@@ -107,15 +107,15 @@ $(document).ready(function() {
 
 
     //funzione che stampa in pagina i risultati ottenuti
-    function generaCard(array_risultati) {
+    function generaCard(array_risultati, tipo) {
         for (var i = 0; i < array_risultati.length; i++) {
             var risultato_corrente = array_risultati[i];
-            scrivi_locandina(risultato_corrente);
+            scrivi_locandina(risultato_corrente, tipo);
         }
     }
 
     //funzione che inserisce i dati trovati in un oggetto
-    function scrivi_locandina(risultato_corrente) {
+    function scrivi_locandina(risultato_corrente, tipo) {
         //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
         var locandina_film = {
             'immagine': seleziona_poster(risultato_corrente.poster_path),
@@ -126,6 +126,7 @@ $(document).ready(function() {
             'lingua': seleziona_lingua(risultato_corrente.original_language),
             'voto': voto_stella(risultato_corrente.vote_average),
             'trama': seleziona_trama(risultato_corrente.overview),
+            'tipo': tipo,
         }
         var html_finale = template_function(locandina_film);
         // appendo in pagina una card con i dati dei film

@@ -103,8 +103,12 @@ main {
     margin: auto;
 }
 
-.title, .original-title {
+.title, .original-title, .type {
     padding-bottom: 5px;
+}
+
+.type {
+    font-style: italic;
 }
 
 .fas.fa-star {
