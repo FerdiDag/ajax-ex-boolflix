@@ -129,11 +129,14 @@ $(document).ready(function() {
             'voto': voto_stella(risultato_corrente.vote_average),
             'trama': risultato_corrente.overview,
             'tipo': tipo,
-            'id': ricerca_attori(risultato_corrente.id),
+            'id': risultato_corrente.id,
+
         }
         var html_finale = template_function(locandina_film);
         // appendo in pagina una card con i dati dei film
         $('.film-container').append(html_finale);
+        ricerca_attori(risultato_corrente.id);
+
     }
 
     function voto_stella(voti) {
@@ -170,36 +173,46 @@ $(document).ready(function() {
     }
 
 
-function ricerca_attori(dato) {
+    function ricerca_attori(id) {
 
         //inizio chiamata ajax
         $.ajax({
-            'url': api_url_base + 'movie/' +  dato + '/credits',
+            'url': api_url_base + 'movie/' + id + '/credits',
             'method': 'GET',
             'data': {
                 'api_key': api_key,
 
             },
             success: function(data) {
-                // mi viene restituito un array come risultato e lo salvo in una variabile
+                var array_nomi = [];
+                var array_cast = data.cast;
+                for (var i = 0; i < 5; i++) {
+                    var cast_corrente = array_cast[i];
+                    // console.log(cast_corrente)
+                    // $('.cast[data-id="' + id + '"]').append(cast_corrente.name);
+                    var nome_cast = cast_corrente.name;
+                    array_nomi.push(nome_cast);
 
-                console.log(data);
-                // if (array_risultati.length == 0) {
-                //     console.log('Nessuna serie Tv corrispondente trovata');
-                // } else {
-                //     //funzione che stampa in pagina i risultati ottenuti
-                //     generaCard(array_risultati, 'Serie-tv');
-                // }
+                    // '.cast[data-id="1"]'
+                    //
+                    // '.class_' + id + '_id';
+                    // '.class_1_id'
+                    //
+                    // '.cast[data-id="' + id + '"]'
+                    console.log(array_nomi);
+                }
+                var nomi = array_nomi.join(', ');
+                $('.cast[data-id="' + id + '"]').append(nomi);
+
             },
+
+
             error: function() {
                 console.log('errore');
             }
         });
         //fine chiamata ajax
-
-
-
-}
+    }
 
 
 
