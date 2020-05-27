@@ -106,6 +106,8 @@ $(document).ready(function() {
     }
 
 
+
+
     //funzione che stampa in pagina i risultati ottenuti
     function generaCard(array_risultati, tipo) {
         for (var i = 0; i < array_risultati.length; i++) {
@@ -125,8 +127,9 @@ $(document).ready(function() {
             'titolo-originale': risultato_corrente.original_title,
             'lingua': seleziona_lingua(risultato_corrente.original_language),
             'voto': voto_stella(risultato_corrente.vote_average),
-            'trama': seleziona_trama(risultato_corrente.overview),
+            'trama': risultato_corrente.overview,
             'tipo': tipo,
+            'id': ricerca_attori(risultato_corrente.id),
         }
         var html_finale = template_function(locandina_film);
         // appendo in pagina una card con i dati dei film
@@ -166,15 +169,37 @@ $(document).ready(function() {
         }
     }
 
-    function seleziona_trama(plot) {
-        if (!plot) {
-            return '';
-        } else {
-            return plot;
-        }
-    }
+
+function ricerca_attori(dato) {
+
+        //inizio chiamata ajax
+        $.ajax({
+            'url': api_url_base + 'movie/' +  dato + '/credits',
+            'method': 'GET',
+            'data': {
+                'api_key': api_key,
+
+            },
+            success: function(data) {
+                // mi viene restituito un array come risultato e lo salvo in una variabile
+
+                console.log(data);
+                // if (array_risultati.length == 0) {
+                //     console.log('Nessuna serie Tv corrispondente trovata');
+                // } else {
+                //     //funzione che stampa in pagina i risultati ottenuti
+                //     generaCard(array_risultati, 'Serie-tv');
+                // }
+            },
+            error: function() {
+                console.log('errore');
+            }
+        });
+        //fine chiamata ajax
 
 
+
+}
 
 
 
