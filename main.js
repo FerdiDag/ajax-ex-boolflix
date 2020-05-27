@@ -9,7 +9,7 @@ $(document).ready(function() {
     var api_url_base = 'https://api.themoviedb.org/3/';
     var api_img_url_base = 'https://image.tmdb.org/t/p/';
     var dimensione_img = 'w342';
-    var lingua = 'it';
+    var lingua = 'en';
 
     //intercetto il click sul bottone submit
     $("#input-button").click(function() {
@@ -35,6 +35,15 @@ $(document).ready(function() {
             $('#input-button').click();
         }
     });
+
+    //plugin che flippa le card
+    $('.film-container').on('mouseenter', '.film-card', function() {
+        $(".flip").flip({
+            trigger: 'hover'
+        });
+    });
+
+
 
 
     function ricercaFilm(messaggio) {
@@ -116,7 +125,7 @@ $(document).ready(function() {
             'titolo-originale': risultato_corrente.original_title,
             'lingua': seleziona_lingua(risultato_corrente.original_language),
             'voto': voto_stella(risultato_corrente.vote_average),
-            'trama': risultato_corrente.overview,
+            'trama': seleziona_trama(risultato_corrente.overview),
         }
         var html_finale = template_function(locandina_film);
         // appendo in pagina una card con i dati dei film
@@ -156,15 +165,18 @@ $(document).ready(function() {
         }
     }
 
+    function seleziona_trama(plot) {
+        if (!plot) {
+            return '';
+        } else {
+            return plot;
+        }
+    }
 
 
-    $('.film-container').on('mouseenter', '.film-card', function() {
-        $(".flip").flip({
-            trigger: 'hover'
 
-        });
 
-    });
+
 
 
 
