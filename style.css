@@ -63,7 +63,7 @@ header img {
     height: 500px;
     /* background-color: red; */
     /* text-align: center; */
-}   
+}
 
 .vote {
     display: block;
@@ -91,3 +91,7 @@ header img {
 .flip img {}
 
 .flip .back {}
+
+    .fas  {
+        color: yellow;
+    }

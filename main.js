@@ -3,21 +3,22 @@ $(document).ready(function() {
     var template_html = $('#film-template').html();
     //preparo la funzione da utilizzare per il template
     var template_function = Handlebars.compile(template_html);
+
+    //preparo delle variabili per l'interfaccia
+    var api_key = 'd2f2e36584ccedbe3c1a6c903ec79afb';
+    var api_url_base = 'https://api.themoviedb.org/3/';
+    var api_img_url_base = 'https://image.tmdb.org/t/p/';
+    var dimensione_img = 'w342';
+    var lingua = 'it';
+
     //intercetto il click sul bottone submit
-
-
-
-
     $("#input-button").click(function() {
         //prendo ciò che è stato scritto dall'utente nella searchbar e lo salvo in una variabile
         var messaggio = $('#input-text').val();
-
-
         //rimuove i risultati ottenuti
         $('.film-container').html('');
         //svuota la searchbar dopo aver premuto invio/click
         $('#input-text').val('');
-
         if (!messaggio.replace(/\s/g, '').length) {
             alert('Inserisci un titolo valido');
         } else {
@@ -26,39 +27,25 @@ $(document).ready(function() {
             ricercaSerie(messaggio);
             //fine chiamata ajax
         }
-
-
-
-
     });
-
-
-
-
-
 
     //per associare  la pressione del tasto enter nella textarea al bottone
     $("#input-text").keydown(function(event) {
         if (event.keyCode === 13) {
             $('#input-button').click();
-
         }
-
-
     });
-
-
 
 
     function ricercaFilm(messaggio) {
         //inizio chiamata ajax
         $.ajax({
-            'url': 'https://api.themoviedb.org/3/search/movie',
+            'url': api_url_base + 'search/movie',
             'method': 'GET',
             'data': {
-                'api_key': 'd2f2e36584ccedbe3c1a6c903ec79afb',
+                'api_key': api_key,
                 'query': messaggio,
-                'language': 'it',
+                'language': lingua,
             },
             success: function(data) {
                 // mi viene restituito un array come risultato e lo salvo in una variabile
@@ -71,9 +58,6 @@ $(document).ready(function() {
                     generaCard(array_risultati);
                 }
 
-
-
-
             },
             error: function() {
                 console.log('errore');
@@ -82,15 +66,17 @@ $(document).ready(function() {
         //fine chiamata ajax
     }
 
+
+
     function ricercaSerie(messaggio) {
         //inizio chiamata ajax
         $.ajax({
-            'url': 'https://api.themoviedb.org/3/search/tv',
+            'url': api_url_base + 'search/tv',
             'method': 'GET',
             'data': {
-                'api_key': 'd2f2e36584ccedbe3c1a6c903ec79afb',
+                'api_key': api_key,
                 'query': messaggio,
-                'language': 'it',
+                'language': lingua,
             },
             success: function(data) {
                 // mi viene restituito un array come risultato e lo salvo in una variabile
@@ -102,20 +88,13 @@ $(document).ready(function() {
                     //funzione che stampa in pagina i risultati ottenuti
                     generaCard(array_risultati);
                 }
-
-
-
-
             },
             error: function() {
                 console.log('errore');
             }
         });
         //fine chiamata ajax
-
-
     }
-
 
 
     //funzione che stampa in pagina i risultati ottenuti
@@ -123,15 +102,12 @@ $(document).ready(function() {
         for (var i = 0; i < array_risultati.length; i++) {
             var risultato_corrente = array_risultati[i];
             scrivi_locandina(risultato_corrente);
-
-
-
         }
     }
+
     //funzione che inserisce i dati trovati in un oggetto
     function scrivi_locandina(risultato_corrente) {
         //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
-
         var locandina_film = {
             'immagine': seleziona_poster(risultato_corrente.poster_path),
             'titolo': risultato_corrente.title,
@@ -141,14 +117,8 @@ $(document).ready(function() {
             'lingua': seleziona_lingua(risultato_corrente.original_language),
             'voto': voto_stella(risultato_corrente.vote_average),
             'trama': risultato_corrente.overview,
-
-
         }
-
-
-
         var html_finale = template_function(locandina_film);
-
         // appendo in pagina una card con i dati dei film
         $('.film-container').append(html_finale);
     }
@@ -177,15 +147,25 @@ $(document).ready(function() {
         }
     }
 
+
     function seleziona_poster(poster) {
-
-
         if (!poster) {
             return 'immagine-non-disponibile.png';
         } else {
-            return 'https://image.tmdb.org/t/p/w342' + poster;
+            return api_img_url_base + dimensione_img + poster;
         }
     }
+
+
+
+    $('.film-container').on('mouseenter', '.film-card', function() {
+        $(".flip").flip({
+            trigger: 'hover'
+
+        });
+
+    });
+
 
 
     // $('.film-container').on('mouseenter', '.film-card', function() {
@@ -205,12 +185,5 @@ $(document).ready(function() {
     //        }
     //    });
 
-        $('.film-container').on('mouseenter', '.film-card', function() {
-           $(".flip").flip({
-               trigger: 'hover'
-
-           });
-
-       });
 
 });
