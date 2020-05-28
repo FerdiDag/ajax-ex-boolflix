@@ -197,6 +197,7 @@ $(document).ready(function() {
                 var array_cast = data.cast;
                 for (var i = 0; i < 5; i++) {
                     var cast_corrente = array_cast[i];
+
                     // console.log(cast_corrente)
                     // $('.cast[data-id="' + id + '"]').append(cast_corrente.name);
 
