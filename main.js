@@ -212,6 +212,7 @@ $(document).ready(function() {
                     console.log(array_nomi);
                 }
 
+                // trova elementi di classe = "cast" con attributo di nome "data-id" che è uguale a id (variabile)
                 $('.cast[data-id="' + id + '"]').append(array_nomi.join(', '));
 
             },
