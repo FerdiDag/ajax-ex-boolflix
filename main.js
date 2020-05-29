@@ -9,7 +9,7 @@ $(document).ready(function() {
     var api_url_base = 'https://api.themoviedb.org/3/';
     var api_img_url_base = 'https://image.tmdb.org/t/p/';
     var dimensione_img = 'w342';
-    var lingua = 'en';
+    var lingua = 'it';
 
     //intercetto il click sul bottone submit
     $("#input-button").click(function() {
@@ -147,6 +147,21 @@ $(document).ready(function() {
 
 
     }
+
+    //se il titolo è uguale al titolo originale, nascondo il titolo originale
+    $('.film-container').on('mouseenter', '.film-card', function() {
+        var titolo = $('.title', this).html();
+        console.log(titolo)
+        var titolo_originale = $('.original-title', this).html();
+        console.log(titolo_originale)
+        if (titolo == titolo_originale) {
+            $('.original-title', this).addClass('hide');
+        }
+    });
+
+
+
+
 
     function voto_stella(voti) {
         var voto = Math.ceil(voti / 2);
