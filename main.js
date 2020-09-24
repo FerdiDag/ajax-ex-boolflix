@@ -132,9 +132,14 @@ $(document).ready(function() {
             'id': risultato_corrente.id,
 
         }
+
+        console.log(locandina_film);
         var html_finale = template_function(locandina_film);
         // appendo in pagina una card con i dati dei film
+
         $('.film-container').append(html_finale);
+
+
 
         var url;
         if (tipo == 'Film') {
@@ -143,8 +148,15 @@ $(document).ready(function() {
             url = 'https://api.themoviedb.org/3/tv/' + risultato_corrente.id + '/credits';
         }
 
-        stampa_attori(risultato_corrente.id, url);
+        var url2;
+        if (tipo == 'Film') {
+            url2 = 'https://api.themoviedb.org/3/movie/' + risultato_corrente.id;
+        } else if (tipo == 'Serie-tv') {
+            url2 = 'https://api.themoviedb.org/3/tv/' + risultato_corrente.id;
+        }
 
+        stampa_attori(risultato_corrente.id, url);
+        stampa_generi(risultato_corrente.id, url2);
 
     }
 
@@ -210,13 +222,18 @@ $(document).ready(function() {
             success: function(data) {
                 var array_nomi = [];
                 var array_cast = data.cast;
+                console.log(data.cast);
                 for (var i = 0; i < 5; i++) {
-                    var cast_corrente = array_cast[i];
+                    if (array_cast[i]) {
+                        var cast_corrente = array_cast[i];
+                        array_nomi.push(cast_corrente.name);
+                    }
+
 
                     // console.log(cast_corrente)
                     // $('.cast[data-id="' + id + '"]').append(cast_corrente.name);
 
-                    array_nomi.push(cast_corrente.name);
+
 
                     // '.cast[data-id="1"]'
                     //
@@ -224,8 +241,10 @@ $(document).ready(function() {
                     // '.class_1_id'
                     //
                     // '.cast[data-id="' + id + '"]'
-                    console.log(array_nomi);
+
                 }
+
+                console.log(array_nomi)
 
                 // trova elementi di classe = "cast" con attributo di nome "data-id" che è uguale a id (variabile)
                 $('.cast[data-id="' + id + '"]').append(array_nomi.join(', '));
@@ -240,6 +259,55 @@ $(document).ready(function() {
         //fine chiamata ajax
     }
 
+    function stampa_generi(id, url2) {
+
+        //inizio chiamata ajax
+        $.ajax({
+            'url': url2,
+            'method': 'GET',
+            'data': {
+                'api_key': api_key,
+
+            },
+            success: function(data) {
+                var array_nomi = [];
+                var array_cast = data.genres;
+                console.log(data.genres);
+                for (var i = 0; i < 5; i++) {
+                    if (array_cast[i]) {
+                        var cast_corrente = array_cast[i];
+                        array_nomi.push(cast_corrente.name);
+                    }
+
+
+                    // console.log(cast_corrente)
+                    // $('.cast[data-id="' + id + '"]').append(cast_corrente.name);
+
+
+
+                    // '.cast[data-id="1"]'
+                    //
+                    // '.class_' + id + '_id';
+                    // '.class_1_id'
+                    //
+                    // '.cast[data-id="' + id + '"]'
+
+                }
+
+                console.log(array_nomi)
+
+                // trova elementi di classe = "cast" con attributo di nome "data-id" che è uguale a id (variabile)
+                $('.genre[data-id="' + id + '"]').append(array_nomi.join(', '));
+
+            },
+
+
+            error: function() {
+                console.log('errore');
+            }
+        });
+        //fine chiamata ajax
+    }
 
 
 
