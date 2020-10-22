@@ -312,22 +312,6 @@ $(document).ready(function() {
 
 
 
-    // $('.film-container').on('mouseenter', '.film-card', function() {
-    //
-    //        $('.info-wrapper', this).show();
-    //        var posterCorrente = $('.poster', this);
-    //        if (posterCorrente.is(":visible")) {
-    //            posterCorrente.hide();
-    //        }
-    //    });
-    //    $('.film-container').on('mouseleave', '.film-card', function() {
-    //
-    //        $('.info-wrapper', this).hide();
-    //        var posterCorrente = $('.poster', this);
-    //        if (posterCorrente.is(":hidden")) {
-    //            posterCorrente.show();
-    //        }
-    //    });
 
 
 });
