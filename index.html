@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Boolflix</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/f40957cf2f.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/f40957cf2f.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="flip-master/dist/jquery.flip.min.js"></script>
     <script src="main.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <div class="header-container">
-            <div class="logo-container">
-                <img src="netflix_logo.png" alt="">
-            </div>
-            <div class="searchBox">
-                <input id="input-text" class="searchInput" type="text" name="" placeholder="Search">
-                <button id="input-button" class="searchButton">
-                    <i class="material-icons">
-                        search
-                    </i>
-                </button>
-            </div>
+      <div class="header-container">
+        <div class="logo-container">
+          <img src="netflix_logo.png" alt="" />
         </div>
+        <div class="searchBox">
+          <input
+            id="input-text"
+            class="searchInput"
+            type="text"
+            name=""
+            placeholder="Search"
+          />
+          <button id="input-button" class="searchButton">
+            <i class="material-icons"> search </i>
+          </button>
+        </div>
+      </div>
     </header>
     <main>
-        <div class="film-container"></div>
+      <div class="film-container"></div>
     </main>
     <script id="film-template" type="text/x-handlebars-template">
-        <div class="film-card  flip">
-         <img class="poster front" src="{{immagine}}" alt="">
-            <div class="info-wrapper back">
-                <h3 class="title"> {{titolo-serie}} {{titolo}}</h3>
-                <h3 class="original-title"> {{titolo-originale-serie}} {{titolo-originale}}</h3>
-                <p class="type"> {{tipo}} </p>
-                <p data-id="{{id}}" class="cast">Cast:</p>
-                <p data-id="{{id}}" class="genre">Genere:</p>
-                <span class="lang">Lingua: {{{lingua}}} </span>
-                <span class="vote">Voto: {{{voto}}} </span>
-                <div class="overview-container">
-                 <p class="overview">{{{trama}}}</p>
-                </div>
-           </div>
-
+      <div class="film-card  flip">
+        <img class="poster front" src="{{immagine}}" alt="" />
+        <div class="info-wrapper back">
+          <h3 class="title">
+            {{titolo_serie}} {{titolo}}
+          </h3>
+          <h3 class="original-title">
+            {{titolo_originale_serie}} {{titolo_originale}}
+          </h3>
+          <p class="type">
+            {{tipo}}
+          </p>
+          <p data-id="{{id}}" class="cast">
+            Cast:
+          </p>
+          <p data-id="{{id}}" class="genre">
+            Genere:
+          </p>
+          <span class="lang">
+            Lingua: {{{lingua}}}
+          </span>
+          <span class="vote">
+            Voto: {{{voto}}}
+          </span>
+          <div class="overview-container">
+            <p class="overview">
+              {{{trama}}}
+            </p>
+          </div>
         </div>
-
-
- </script>
-
-</body>
-
+      </div>
+    </script>
+  </body>
 </html>
