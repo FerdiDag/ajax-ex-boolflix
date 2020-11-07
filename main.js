@@ -50,6 +50,70 @@ $(document).ready(function () {
     }
   }
 
+  function stampa_attori(id, url) {
+    //inizio chiamata ajax
+    $.ajax({
+      url: url,
+      method: "GET",
+      data: {
+        api_key: api_key,
+      },
+      success: function (data) {
+        var array_nomi = [];
+        var array_cast = data.cast;
+        console.log(data.cast);
+        for (var i = 0; i < 5; i++) {
+          if (array_cast[i]) {
+            var cast_corrente = array_cast[i];
+            array_nomi.push(cast_corrente.name);
+          }
+        }
+
+        console.log(array_nomi);
+
+        // trova elementi di classe = "cast" con attributo di nome "data-id" che è uguale a id (variabile)
+        $('.cast[data-id="' + id + '"]').append(array_nomi.join(", "));
+      },
+
+      error: function () {
+        console.log("errore");
+      },
+    });
+    //fine chiamata ajax
+  }
+
+  function stampa_generi(id, url2) {
+    //inizio chiamata ajax
+    $.ajax({
+      url: url2,
+      method: "GET",
+      data: {
+        api_key: api_key,
+      },
+      success: function (data) {
+        var array_nomi = [];
+        var array_cast = data.genres;
+        console.log(data.genres);
+        for (var i = 0; i < 5; i++) {
+          if (array_cast[i]) {
+            var cast_corrente = array_cast[i];
+            array_nomi.push(cast_corrente.name);
+          }
+        }
+
+        console.log(array_nomi);
+
+        // trova elementi di classe = "genre" con attributo di nome "data-id" che è uguale a id (variabile)
+        $('.genre[data-id="' + id + '"]').append(array_nomi.join(", "));
+      },
+
+      error: function () {
+        console.log("errore");
+      },
+    });
+    //fine chiamata ajax
+  }
+
   //funzione che inserisce i dati trovati in un oggetto
   function scrivi_locandina(risultato_corrente, tipo) {
     //salvo ogni risultato dell'array in un nuovo oggetto, per poi eventualmente usare handlebars
@@ -123,70 +187,6 @@ $(document).ready(function () {
     } else {
       return api_img_url_base + dimensione_img + poster;
     }
-  }
-
-  function stampa_attori(id, url) {
-    //inizio chiamata ajax
-    $.ajax({
-      url: url,
-      method: "GET",
-      data: {
-        api_key: api_key,
-      },
-      success: function (data) {
-        var array_nomi = [];
-        var array_cast = data.cast;
-        console.log(data.cast);
-        for (var i = 0; i < 5; i++) {
-          if (array_cast[i]) {
-            var cast_corrente = array_cast[i];
-            array_nomi.push(cast_corrente.name);
-          }
-        }
-
-        console.log(array_nomi);
-
-        // trova elementi di classe = "cast" con attributo di nome "data-id" che è uguale a id (variabile)
-        $('.cast[data-id="' + id + '"]').append(array_nomi.join(", "));
-      },
-
-      error: function () {
-        console.log("errore");
-      },
-    });
-    //fine chiamata ajax
-  }
-
-  function stampa_generi(id, url2) {
-    //inizio chiamata ajax
-    $.ajax({
-      url: url2,
-      method: "GET",
-      data: {
-        api_key: api_key,
-      },
-      success: function (data) {
-        var array_nomi = [];
-        var array_cast = data.genres;
-        console.log(data.genres);
-        for (var i = 0; i < 5; i++) {
-          if (array_cast[i]) {
-            var cast_corrente = array_cast[i];
-            array_nomi.push(cast_corrente.name);
-          }
-        }
-
-        console.log(array_nomi);
-
-        // trova elementi di classe = "genre" con attributo di nome "data-id" che è uguale a id (variabile)
-        $('.genre[data-id="' + id + '"]').append(array_nomi.join(", "));
-      },
-
-      error: function () {
-        console.log("errore");
-      },
-    });
-    //fine chiamata ajax
   }
 
   //intercetto il click sul bottone submit
