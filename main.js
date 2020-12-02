@@ -205,6 +205,9 @@ $(document).ready(function () {
     }
   });
 
+  //focus sulla barra di ricerca
+  $('#input-text').focus();
+
   //per associare  la pressione del tasto enter nella textarea al bottone
   $('#input-text').keydown(function (event) {
     if (event.keyCode === 13) {
