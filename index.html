@@ -16,6 +16,7 @@
 
   <body>
     <header>
+      asdsd
       <div class="header-container">
         <div class="logo-container">
           <img src="netflix_logo.png" alt="" />
@@ -38,32 +39,32 @@
       <div class="film-container"></div>
     </main>
     <script id="film-template" type="text/x-handlebars-template">
-      <div class="film-card  flip">
-        <img class="poster front" src="{{immagine}}" alt="" />
-        <div class="info-wrapper back">
-          <h3 class="title">
+      <div class='film-card  flip'>
+        <img class='poster front' src='{{immagine}}' alt='' />
+        <div class='info-wrapper back'>
+          <h3 class='title'>
             {{titolo_serie}} {{titolo}}
           </h3>
-          <h3 class="original-title">
+          <h3 class='original-title'>
             {{titolo_originale_serie}} {{titolo_originale}}
           </h3>
-          <p class="type">
+          <p class='type'>
             {{tipo}}
           </p>
-          <p data-id="{{id}}" class="cast">
+          <p data-id='{{id}}' class='cast'>
             Cast:
           </p>
-          <p data-id="{{id}}" class="genre">
+          <p data-id='{{id}}' class='genre'>
             Genere:
           </p>
-          <span class="lang">
+          <span class='lang'>
             Lingua: {{{lingua}}}
           </span>
-          <span class="vote">
+          <span class='vote'>
             Voto: {{{voto}}}
           </span>
-          <div class="overview-container">
-            <p class="overview">
+          <div class='overview-container'>
+            <p class='overview'>
               {{{trama}}}
             </p>
           </div>
